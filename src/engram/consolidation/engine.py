@@ -47,10 +47,35 @@ class ConsolidationEngine:
         for mem in extraction_result.memories:
             mem.embedding = self._embedder.embed(mem.content)
 
+        # Memories linked to functional (supersedable) relations must bypass dedup:
+        # embedding models treat "User lives in Austin" and "User lives in Tampa" as
+        # near-identical (cosine ≈ 1.0) because they share the same semantic template.
+        # Without this exception, the update memory is rejected as a duplicate while
+        # the old memory gets superseded — leaving no valid memory at all.
+        # Functional (single-valued) relation types: a user can only have one value
+        # at a time for these. New values supersede old ones rather than coexisting.
+        # Also bypasses dedup because embedding models score same-template sentences
+        # (e.g. "User codes in Go" vs "User codes in Rust") as near-identical.
+        _FUNCTIONAL_TYPES = {
+            "LIVES_IN", "WORKS_AT", "MARRIED_TO", "BORN_IN",
+            "STUDIES", "USES_LANGUAGE", "DOES_EXERCISE", "RELATIONSHIP_STATUS",
+        }
+        functional_memory_ids = {
+            rel.memory_id
+            for rel in extraction_result.relations
+            if rel.relation_type in _FUNCTIONAL_TYPES
+        }
+
         # Step 2: Dedup check
         memories_to_store: list[Memory] = []
         for mem in extraction_result.memories:
             if mem.embedding is None:
+                memories_to_store.append(mem)
+                continue
+
+            if mem.id in functional_memory_ids:
+                # Always store updates to functional facts; supersession will
+                # invalidate the stale version rather than dedup dropping the new one.
                 memories_to_store.append(mem)
                 continue
 
@@ -70,8 +95,10 @@ class ConsolidationEngine:
                 logger.debug("Skipping duplicate memory: %s", mem.content)
 
         # Step 3: Store non-duplicate memories
+        stored_memory_ids = set()
         if memories_to_store:
             self._vector_store.add(memories_to_store)
+            stored_memory_ids = {m.id for m in memories_to_store}
 
         # Step 4: Resolve entity IDs
         id_mapping = self._graph_store.upsert_entities(extraction_result.entities)
@@ -86,22 +113,32 @@ class ConsolidationEngine:
                 relation.target_entity_id, relation.target_entity_id
             )
 
-            # Find and resolve conflicts
-            conflicts = self._graph_store.find_conflicting(relation)
-            for conflict in conflicts:
-                # Invalidate old relation
-                self._graph_store.invalidate_relation(conflict.id, at=now)
-                # Supersede the old memory
-                self._vector_store.update_metadata(
-                    conflict.memory_id,
-                    valid_until=now,
-                    superseded_by=relation.memory_id,
-                )
-                logger.debug(
-                    "Superseded memory %s with %s", conflict.memory_id, relation.memory_id
-                )
+            # For functional (single-valued) relations, supersede as long as
+            # any memory from this batch was stored. The functional memory always
+            # bypasses dedup, but relation.memory_id may point to a different
+            # (non-functional) memory that got deduped, so a strict id check
+            # would silently skip supersession.
+            # For non-functional relations, keep the strict check to avoid
+            # invalidating old memories when the new one was a duplicate.
+            if relation.relation_type in _FUNCTIONAL_TYPES:
+                should_supersede = bool(stored_memory_ids)
+            else:
+                should_supersede = relation.memory_id in stored_memory_ids
 
-            # Insert new relation
+            if should_supersede:
+                conflicts = self._graph_store.find_conflicting(relation)
+                for conflict in conflicts:
+                    self._graph_store.invalidate_relation(conflict.id, at=now)
+                    self._vector_store.update_metadata(
+                        conflict.memory_id,
+                        valid_until=now,
+                        superseded_by=relation.memory_id,
+                    )
+                    logger.debug(
+                        "Superseded memory %s with %s", conflict.memory_id, relation.memory_id
+                    )
+
+            # Insert new relation regardless of whether memory was stored
             self._graph_store.upsert_relations([relation])
 
         return memories_to_store

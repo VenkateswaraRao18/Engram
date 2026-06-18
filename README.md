@@ -131,7 +131,13 @@ Stats: 3 total memories, 2 currently valid
 ## Install
 
 ```bash
-git clone https://github.com/yourusername/engram
+pip install engram-ltm
+```
+
+Or from source:
+
+```bash
+git clone https://github.com/venkyjannegorla/engram
 cd engram
 pip install -e ".[local]"
 ```
@@ -212,6 +218,60 @@ Recency uses an exponential decay with a 30-day half-life (configurable).
 
 ---
 
+## Benchmarks
+
+All numbers were generated on a single machine. Reproduction scripts are in `benchmarks/`.
+
+### Latency (synthetic 768-dim embeddings, 100 ops each)
+
+| Backend        | Scale  | search p50 | search p95 |
+|----------------|--------|------------|------------|
+| SQLite (numpy) |  1,000 |   104.9 ms |   106.3 ms |
+| FAISS          |  1,000 |     0.5 ms |     0.5 ms |
+| SQLite (numpy) | 10,000 |  1,007.2 ms |  1,034.5 ms |
+| FAISS          | 10,000 |     7.1 ms |    10.3 ms |
+
+SQLite search is O(n) — brute-force cosine over every embedding on every query. FAISS stays flat. Switch with `vector_store="faiss"` in `EngramConfig`.
+
+| Backend  | Scale  | neighbor p50 | neighbor p95 |
+|----------|--------|--------------|--------------|
+| NetworkX |  1,000 |      0.3 ms  |      0.3 ms  |
+| Neo4j    |  1,000 |      5.6 ms  |     12.2 ms  |
+| NetworkX | 10,000 |      0.3 ms  |      0.4 ms  |
+| Neo4j    | 10,000 |     17.1 ms  |     22.2 ms  |
+
+NetworkX is pure Python in-memory. Neo4j adds network overhead but scales to billions of edges.
+
+### Memory QA accuracy (LongMemEval-style stress benchmark, 25 examples)
+
+25 hand-crafted QA examples across five question types. Results with **Gemini 2.5 Flash** as both extractor and answer model:
+
+| System | knowledge_update | temporal_chain | single_session | multi_session | abstained | Overall |
+|--------|-----------------|----------------|----------------|---------------|-----------|---------|
+| **Engram (full)** | **80%** | **80%** | 80% | **80%** | **100%** | **84%** |
+| VectorOnly (no supersession) | 40% | 60% | 80% | 80% | 100% | 72% |
+| NaiveRAG (baseline) | 100% | 40% | 80% | 60% | 100% | 76% |
+
+**`knowledge_update`** (5 examples, 7–8 sessions each with noise between old and new fact): VectorOnly scores 40% because without supersession both facts coexist — the LLM sees "User lives in Tampa" alongside "User lives in Austin" with no way to determine recency and answers wrong or refuses. Engram's supersession removes the stale fact, leaving only the current value.
+
+**`temporal_chain`** (5 examples, same fact updated 3× without temporal cues): the hardest category. VectorOnly and NaiveRAG both degrade below 60% because neither can resolve three conflicting versions of the same fact. Engram chains the supersession — Tampa → Austin → Denver leaves only Denver — and scores 80%.
+
+**`multi_session`** shows the extraction advantage: Engram's structured graph edges connect entities across sessions (brother Alex → Amazon), while NaiveRAG misses some multi-hop connections.
+
+**`abstained_response`** tests correct refusal for never-mentioned facts. All systems score 100%.
+
+The stress benchmark is specifically designed to expose the weaknesses of append-only systems. Each `knowledge_update` example adds 5–6 unrelated noise sessions between the old and new fact, and removes explicit temporal language ("I just moved") that would otherwise let any LLM infer recency from phrasing alone.
+
+**Concrete VectorOnly failure examples:**
+- `ku_001`: returns "Tampa" (stale) instead of "Austin" (current)
+- `ku_005`: returns "computer science" (stale) instead of "data science" (current)
+- `tc_001`: returns "I don't know" — confused by Tampa + Austin + Denver all in context
+- `tc_003`: returns "I don't know" — confused by Python + Go + Rust all in context
+
+Full results and raw JSON in `benchmarks/longmemeval/results/`.
+
+---
+
 ## How it compares
 
 | Feature | Engram | Mem0 | Zep | LangMem |
@@ -221,7 +281,7 @@ Recency uses an exponential decay with a 30-day half-life (configurable).
 | Temporal supersession | ✓ | ✗ | ✗ | ✗ |
 | Hybrid retrieval (RRF) | ✓ | ✗ | ✗ | ✗ |
 | Fully local (no API keys) | ✓ | ✗ | partial | ✓ |
-| Published benchmarks | planned (v0.3) | ✗ | ✗ | ✗ |
+| Published benchmarks | ✓ | ✗ | ✗ | ✗ |
 | Framework-agnostic | ✓ | ✓ | ✓ | ✗ |
 | Open source | ✓ | partial | partial | ✓ |
 
@@ -235,6 +295,7 @@ The main gap I wanted to close: Mem0 is the most widely used but has no temporal
 engram/
 ├── src/engram/
 │   ├── client.py              # Public API: Engram class
+│   ├── async_client.py        # AsyncEngram wrapper
 │   ├── config.py              # All tunables in one place
 │   ├── models.py              # Memory, Entity, Relation, SearchResult
 │   ├── extraction/
@@ -244,16 +305,28 @@ engram/
 │   │   └── ollama_embedder.py # nomic-embed-text via Ollama
 │   ├── stores/
 │   │   ├── vector/
-│   │   │   └── sqlite_store.py    # SQLite + numpy cosine similarity
+│   │   │   ├── sqlite_store.py    # SQLite + numpy (default)
+│   │   │   └── faiss_store.py     # FAISS IndexFlatIP (fast)
 │   │   └── graph/
-│   │       └── networkx_store.py  # NetworkX + JSON persistence
+│   │       ├── networkx_store.py  # NetworkX + JSON persistence (default)
+│   │       └── neo4j_store.py     # Neo4j via Cypher (scale)
 │   ├── retrieval/
 │   │   └── hybrid.py          # RRF fusion, recency/importance boost
 │   └── consolidation/
 │       └── engine.py          # Dedup, supersession, entity resolution
+├── benchmarks/
+│   ├── latency/run.py         # Vector/graph store latency at 1K and 10K scale
+│   └── longmemeval/
+│       ├── run.py             # QA accuracy benchmark (3 systems, 4 question types)
+│       ├── adapters/          # Engram, VectorOnly, NaiveRAG adapters
+│       ├── data/sample_20.json  # 20 hand-crafted evaluation examples
+│       └── results/           # JSON + markdown outputs
 ├── tests/
 │   ├── conftest.py            # FakeLLM, FakeEmbedder fixtures
 │   └── unit/                  # 44 tests, all passing
+├── docs/
+│   ├── benchmarks.md          # Latency benchmark results
+│   └── latency_results.json   # Raw latency numbers
 └── demo.py                    # Tampa → Austin scenario end-to-end
 ```
 
@@ -280,10 +353,23 @@ mw = Engram(EngramConfig(
 
 ---
 
-## Running tests
+## Running tests and benchmarks
 
 ```bash
+# Unit tests
 pytest tests/unit -x -q
+
+# Latency benchmarks (no Ollama needed — uses synthetic embeddings)
+python benchmarks/latency/run.py
+
+# QA accuracy benchmark (Ollama + llama3.1 required, ~15 minutes)
+python benchmarks/longmemeval/run.py
+
+# Stress benchmark (noise sessions + temporal_chain category, ~25 minutes)
+python benchmarks/longmemeval/run.py --data benchmarks/longmemeval/data/sample_stress.json
+
+# Quick mode: knowledge_update + temporal_chain only (~8 minutes)
+python benchmarks/longmemeval/run.py --quick --data benchmarks/longmemeval/data/sample_stress.json
 ```
 
 44 tests covering: models, extraction with fake LLM, vector store CRUD + cosine search, graph store entity resolution + conflict detection + persistence, RRF math, consolidation dedup + supersession.
@@ -292,42 +378,41 @@ pytest tests/unit -x -q
 
 ## Limitations (honest)
 
-**This is v0.** A few things to know before using it:
+**This is v0.2.** A few things to know before using it:
 
-- **Extraction quality depends on your local LLM.** llama3.1 works well for straightforward facts but occasionally misses structured relations in long messages. A bigger model (or Anthropic/OpenAI) will do better.
-- **Vector search is brute-force.** We compute cosine similarity across all memories for every query. Fine up to a few thousand memories per user. Above that, you'll want FAISS or Qdrant (planned for v0.2).
-- **Graph store is embedded NetworkX.** Documented limit: ~100K edges. Beyond that, Neo4j backend is the path (planned for v0.2).
-- **No async client yet.** Everything is synchronous. Async wrapper is on the roadmap.
-- **No benchmarks published yet.** Numbers against Mem0, Zep, and naive RAG baselines are planned for v0.3. I'll publish honestly regardless of outcome.
+- **Extraction quality depends on your local LLM.** llama3.1 works well for straightforward facts but occasionally misses structured relations in long messages or generates JSON that doesn't parse cleanly. A bigger model (Llama 3.3 70B or Anthropic/OpenAI) will do better.
+- **Dedup has a blind spot for template-structured facts.** "User lives in Tampa" and "User lives in Austin" get cosine similarity ≈ 1.0 from nomic-embed-text because they share semantic structure. Engram handles this by bypassing dedup for memories linked to functional relations (LIVES_IN, WORKS_AT, etc.) and letting supersession do the work instead.
+- **SQLite search is O(n).** Fine to a few thousand memories per user. Above ~5K, switch to `vector_store="faiss"` in `EngramConfig` for a 142× speedup at 10K scale.
+- **NetworkX graph limit: ~100K edges.** Beyond that, switch to `graph_store="neo4j"`.
+- **Multi-session reasoning is harder than single-session.** The LongMemEval benchmark shows 20% accuracy on multi-session questions — cross-session entity co-reference is a hard NLP problem independent of memory architecture.
 
 ---
 
 ## Roadmap
 
-**v0.1 (current)** — Core working library
+**v0.1** — Core working library
 - SQLite vector store (numpy cosine)
 - NetworkX graph store (JSON persistence)
 - Hybrid RRF retrieval
 - Temporal supersession
 - 44 unit tests
 
-**v0.2** — Multiple backends + async
-- FAISS and Qdrant vector backends
+**v0.2 (current)** — Multiple backends + async + benchmarks
+- FAISS vector backend (142× faster at 10K scale)
 - Neo4j graph backend
 - AsyncEngram wrapper
-- Shared backend contract test suite
-
-**v0.3** — Benchmarks
-- LongMemEval harness (Engram vs Mem0 vs Zep vs naive RAG)
-- LoCoMo QA accuracy
-- Latency suite at 1K / 10K / 100K memories
-- Published to docs/ regardless of whether we win or lose each category
+- Latency benchmarks (1K and 10K scale)
+- LongMemEval-style QA benchmark (25 examples, 5 categories, 3 systems)
+- Stress benchmark with noise sessions and temporal_chain category
+- Extended functional relation types: STUDIES, USES_LANGUAGE, DOES_EXERCISE, RELATIONSHIP_STATUS
+- Fixed dedup false-positive for functional facts
 
 **v1.0** — Production-ready
 - PyPI trusted publishing
 - MkDocs documentation site
 - Full API reference
 - CI/CD matrix (Python 3.10, 3.11, 3.12)
+- LoCoMo / full LongMemEval (500 examples) evaluation
 
 ---
 

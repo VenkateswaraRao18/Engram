@@ -5,8 +5,7 @@ from typing import Optional
 
 from .config import EngramConfig
 from .consolidation.engine import ConsolidationEngine
-from .embeddings.ollama_embedder import OllamaEmbedder
-from .extraction.llm_extractor import LLMExtractor, OllamaProvider
+from .extraction.llm_extractor import GeminiProvider, LLMExtractor, OllamaProvider
 from .models import Memory, SearchResult
 from .retrieval.hybrid import HybridRetriever
 from .stores.graph.networkx_store import NetworkXGraphStore
@@ -20,12 +19,41 @@ class Engram:
         self._config = config
 
         # Build providers
-        llm = OllamaProvider(model=config.llm_model)
-        embedder = OllamaEmbedder(model=config.embedding_model)
+        if config.llm_provider == "gemini":
+            llm = GeminiProvider(model=config.llm_model, api_key=config.gemini_api_key)
+        else:
+            llm = OllamaProvider(model=config.llm_model)
+        if config.embedding_provider == "sentence-transformers":
+            from .embeddings.st_embedder import SentenceTransformerEmbedder
+            _st = SentenceTransformerEmbedder(
+                model=config.embedding_model if config.embedding_model != "nomic-embed-text"
+                else "all-MiniLM-L6-v2"
+            )
+            embedder = _st
+            if config.embedding_dimensions == 768:
+                config = config.model_copy(update={"embedding_dimensions": _st.dimensions})
+        else:
+            from .embeddings.ollama_embedder import OllamaEmbedder
+            embedder = OllamaEmbedder(model=config.embedding_model)
 
         # Build stores
-        self._vector_store = SQLiteVectorStore(db_path=config.db_path)
-        self._graph_store = NetworkXGraphStore(path=config.graph_path)
+        if config.vector_store == "faiss":
+            from .stores.vector.faiss_store import FAISSVectorStore
+            self._vector_store = FAISSVectorStore(
+                db_path=config.db_path,
+                dimensions=config.embedding_dimensions,
+            )
+        else:
+            self._vector_store = SQLiteVectorStore(db_path=config.db_path)
+        if config.graph_store == "neo4j":
+            from .stores.graph.neo4j_store import Neo4jGraphStore
+            self._graph_store = Neo4jGraphStore(
+                uri=config.neo4j_uri,
+                user=config.neo4j_user,
+                password=config.neo4j_password,
+            )
+        else:
+            self._graph_store = NetworkXGraphStore(path=config.graph_path)
 
         # Build components
         self._extractor = LLMExtractor(llm=llm, window=config.extraction_window)

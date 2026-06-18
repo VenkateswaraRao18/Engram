@@ -1,19 +1,46 @@
 [build-system]
-requires = ["setuptools>=42"]
+requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "engram"
-version = "0.1.0"
-description = "Long-term memory engine for LLM assistants — hybrid vector + knowledge graph"
+name = "engram-ltm"
+version = "0.2.9"
+description = "Long-term memory for LLM apps — hybrid vector store + temporal knowledge graph with supersession"
+readme = "README.md"
+license = "Apache-2.0"
 requires-python = ">=3.9"
-dependencies = ["pydantic>=2.0", "numpy", "networkx", "tenacity"]
+authors = [{ name = "Venky Jannegorla", email = "venkyjannegorla@gmail.com" }]
+keywords = ["llm", "memory", "knowledge-graph", "vector-store", "rag", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "pydantic>=2.0",
+    "numpy",
+    "networkx",
+    "tenacity",
+]
 
 [project.optional-dependencies]
 local = ["ollama"]
-anthropic = ["anthropic"]
-dev = ["pytest>=7", "pytest-cov", "ruff"]
-all = ["engram[local,anthropic,dev]"]
+gemini = ["google-genai>=1.0"]
+st = ["sentence-transformers>=2.0"]
+faiss = ["faiss-cpu"]
+neo4j = ["neo4j"]
+dev = ["pytest>=7", "pytest-asyncio", "pytest-cov", "ruff"]
+all = ["engram-memory[local,gemini,faiss,neo4j,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/venkyjannegorla/engram"
+Repository = "https://github.com/venkyjannegorla/engram"
+"Bug Tracker" = "https://github.com/venkyjannegorla/engram/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,435 @@
+[
+  {
+    "id": "ku_001",
+    "question_type": "knowledge_update",
+    "question": "Where does the user currently live?",
+    "answer": "Austin",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I live in Tampa, Florida with my family."},
+          {"role": "assistant", "content": "Tampa is a great city!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I've been thinking about moving to Texas for a while now."},
+          {"role": "assistant", "content": "Texas has great cities like Austin and Houston!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "I just moved to Austin last week. The city is absolutely amazing!"},
+          {"role": "assistant", "content": "Congratulations on the move to Austin!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ku_002",
+    "question_type": "knowledge_update",
+    "question": "Where does the user work?",
+    "answer": "Netflix",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I work at Google as a software engineer on the search team."},
+          {"role": "assistant", "content": "Google is an amazing place to work!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I got a compelling job offer from Netflix and I'm seriously considering it."},
+          {"role": "assistant", "content": "Netflix has an incredible engineering culture!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "I accepted the Netflix offer and started there this Monday. Loving it so far."},
+          {"role": "assistant", "content": "Congratulations on the new job at Netflix!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ku_003",
+    "question_type": "knowledge_update",
+    "question": "What is the user's relationship status?",
+    "answer": "married",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I've been dating my girlfriend Sarah for three years now."},
+          {"role": "assistant", "content": "Three years is a wonderful milestone!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I proposed to Sarah last night at dinner and she said yes!"},
+          {"role": "assistant", "content": "Congratulations on your engagement!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "Sarah and I just got married last weekend. We are officially husband and wife now."},
+          {"role": "assistant", "content": "Congratulations on your wedding!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ku_004",
+    "question_type": "knowledge_update",
+    "question": "What sport does the user currently do for fitness?",
+    "answer": "cycling",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I run every morning for fitness. Usually five miles before work."},
+          {"role": "assistant", "content": "That's an impressive running routine!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I hurt my knee and the doctor said I need to stop running for several months."},
+          {"role": "assistant", "content": "I'm sorry to hear about the knee injury."}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "I switched to cycling after the knee injury. Honestly I enjoy it more than running."},
+          {"role": "assistant", "content": "Cycling is a great low-impact sport!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ku_005",
+    "question_type": "knowledge_update",
+    "question": "What is the user's major or field of study?",
+    "answer": "data science",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I am majoring in computer science at USF."},
+          {"role": "assistant", "content": "Computer science is a fantastic field!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I have decided to switch my major to data science. It aligns better with my career goals."},
+          {"role": "assistant", "content": "Data science is a very exciting and in-demand field!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ss_001",
+    "question_type": "single_session",
+    "question": "What is the user's dog's name?",
+    "answer": "Max",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I just got a golden retriever puppy named Max. He is so energetic and adorable!"},
+          {"role": "assistant", "content": "Golden retrievers are such loving dogs. Max sounds wonderful!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ss_002",
+    "question_type": "single_session",
+    "question": "Where was the user born?",
+    "answer": "Chicago",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I grew up in Chicago but moved to Florida for college and never looked back."},
+          {"role": "assistant", "content": "The transition from Chicago winters to Florida sunshine must have been nice!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ss_003",
+    "question_type": "single_session",
+    "question": "What is the user's favorite type of cuisine?",
+    "answer": "Italian",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "Italian food is my absolute favorite. I could eat pasta and pizza every single day."},
+          {"role": "assistant", "content": "Italian cuisine has such wonderful variety and flavors!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ss_004",
+    "question_type": "single_session",
+    "question": "What programming language does the user primarily use?",
+    "answer": "Python",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I mainly code in Python. I use it for all my machine learning projects at work."},
+          {"role": "assistant", "content": "Python is excellent for ML and data science!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ss_005",
+    "question_type": "single_session",
+    "question": "What is the user's favorite book?",
+    "answer": "Dune",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "Dune by Frank Herbert is my all-time favorite novel. I have read it four times."},
+          {"role": "assistant", "content": "Dune is a true masterpiece of science fiction!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms_001",
+    "question_type": "multi_session",
+    "question": "Where does the user's brother work?",
+    "answer": "Amazon",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "My brother Alex is also in the tech industry. He has always been great with computers."},
+          {"role": "assistant", "content": "It is great having family in the same field!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "Alex got a job offer from Amazon and accepted it. He starts next month."},
+          {"role": "assistant", "content": "Amazon is a fantastic opportunity!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "Alex started at Amazon this week. He is working on the logistics engineering team."},
+          {"role": "assistant", "content": "That is wonderful! Amazon logistics is very complex and important work."}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms_002",
+    "question_type": "multi_session",
+    "question": "What happened with the user's Spanish language learning?",
+    "answer": "passed intermediate exam",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I have started learning Spanish. Using Duolingo and attending weekly classes."},
+          {"role": "assistant", "content": "Spanish is a great language to learn!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "My Spanish is improving a lot. I can hold basic conversations now."},
+          {"role": "assistant", "content": "That is great progress!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "I just passed my Spanish intermediate level exam. So proud of this achievement!"},
+          {"role": "assistant", "content": "Congratulations! That is a real milestone!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms_003",
+    "question_type": "multi_session",
+    "question": "Who is the user's roommate?",
+    "answer": "Jordan",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I just signed a lease on a new two-bedroom apartment near campus."},
+          {"role": "assistant", "content": "Exciting! A new place is always a fresh start."}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I am looking for a roommate to help split the rent on my new apartment."},
+          {"role": "assistant", "content": "Have you tried posting on housing apps or asking friends?"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "My friend Jordan moved in last weekend as my roommate. We get along great."},
+          {"role": "assistant", "content": "Living with a good friend can be a wonderful experience!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms_004",
+    "question_type": "multi_session",
+    "question": "What happened with the user's startup?",
+    "answer": "raised seed funding",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I have been working on a startup idea in the edtech space for several months."},
+          {"role": "assistant", "content": "EdTech is a growing and impactful sector!"}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "We launched our MVP and got our first fifty paying customers this week."},
+          {"role": "assistant", "content": "That is an amazing milestone! Congratulations!"}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "We just closed our seed round and raised five hundred thousand dollars from angel investors."},
+          {"role": "assistant", "content": "Congratulations on raising seed funding!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ms_005",
+    "question_type": "multi_session",
+    "question": "What did the user think of their Japan trip?",
+    "answer": "loved it",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I am planning a trip to Japan next spring. I have wanted to go for years."},
+          {"role": "assistant", "content": "Japan is incredible! Tokyo and Kyoto are must-sees."}
+        ]
+      },
+      {
+        "session_id": "s2",
+        "messages": [
+          {"role": "user", "content": "I am in Japan right now! Tokyo is absolutely amazing and the food is incredible."},
+          {"role": "assistant", "content": "Enjoy every moment! Japan is one of a kind."}
+        ]
+      },
+      {
+        "session_id": "s3",
+        "messages": [
+          {"role": "user", "content": "Just got back from Japan. It was the best trip of my life. I loved every single moment there."},
+          {"role": "assistant", "content": "That is wonderful to hear!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ab_001",
+    "question_type": "abstained_response",
+    "question": "What is the user's mother's name?",
+    "answer": "unknown",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I had a great weekend hiking with my family in the mountains."},
+          {"role": "assistant", "content": "Hiking with family sounds wonderful!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ab_002",
+    "question_type": "abstained_response",
+    "question": "How much does the user earn per year?",
+    "answer": "unknown",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I work as a software engineer at a tech company in San Francisco."},
+          {"role": "assistant", "content": "Software engineering in San Francisco is a great career!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ab_003",
+    "question_type": "abstained_response",
+    "question": "What is the user's phone number?",
+    "answer": "unknown",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "Can you help me write a professional email to my manager?"},
+          {"role": "assistant", "content": "Of course! What would you like the email to say?"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ab_004",
+    "question_type": "abstained_response",
+    "question": "What religion does the user practice?",
+    "answer": "unknown",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I spent Sunday morning at the park reading and then had brunch with friends."},
+          {"role": "assistant", "content": "Sounds like a really relaxing and enjoyable Sunday!"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ab_005",
+    "question_type": "abstained_response",
+    "question": "What is the exact street address of the user's home?",
+    "answer": "unknown",
+    "sessions": [
+      {
+        "session_id": "s1",
+        "messages": [
+          {"role": "user", "content": "I live in Austin. The neighborhood is very walkable and I love it."},
+          {"role": "assistant", "content": "Austin has many wonderful walkable neighborhoods!"}
+        ]
+      }
+    ]
+  }
+]

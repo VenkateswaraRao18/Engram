@@ -1,0 +1,640 @@
+{
+  "timestamp": "20260617_234157",
+  "results": {
+    "Engram (full)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 7310.1,
+        "answer_ms": 2268.2
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Netflix.",
+        "correct": true,
+        "add_ms": 5350.7,
+        "answer_ms": 2263.8
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 6005.0,
+        "answer_ms": 13656.7
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling for fitness.",
+        "correct": true,
+        "add_ms": 6727.3,
+        "answer_ms": 4783.4
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 6748.5,
+        "answer_ms": 1312.7
+      },
+      {
+        "id": "ss_001",
+        "question_type": "single_session",
+        "question": "What is the user's dog's name?",
+        "ground_truth": "Max",
+        "predicted": "The user's dog's name is Max.",
+        "correct": true,
+        "add_ms": 1656.1,
+        "answer_ms": 720.1
+      },
+      {
+        "id": "ss_002",
+        "question_type": "single_session",
+        "question": "Where was the user born?",
+        "ground_truth": "Chicago",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 2800.3,
+        "answer_ms": 1833.5
+      },
+      {
+        "id": "ss_003",
+        "question_type": "single_session",
+        "question": "What is the user's favorite type of cuisine?",
+        "ground_truth": "Italian",
+        "predicted": "The user's favorite type of cuisine is Italian food.",
+        "correct": true,
+        "add_ms": 2140.8,
+        "answer_ms": 2098.6
+      },
+      {
+        "id": "ss_004",
+        "question_type": "single_session",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Python",
+        "predicted": "The user mainly codes in Python.",
+        "correct": true,
+        "add_ms": 2371.4,
+        "answer_ms": 2773.7
+      },
+      {
+        "id": "ss_005",
+        "question_type": "single_session",
+        "question": "What is the user's favorite book?",
+        "ground_truth": "Dune",
+        "predicted": "The user's favorite book is Dune by Frank Herbert.",
+        "correct": true,
+        "add_ms": 1856.3,
+        "answer_ms": 2112.2
+      },
+      {
+        "id": "ms_001",
+        "question_type": "multi_session",
+        "question": "Where does the user's brother work?",
+        "ground_truth": "Amazon",
+        "predicted": "The user's brother works at Amazon.",
+        "correct": true,
+        "add_ms": 6708.3,
+        "answer_ms": 2608.8
+      },
+      {
+        "id": "ms_002",
+        "question_type": "multi_session",
+        "question": "What happened with the user's Spanish language learning?",
+        "ground_truth": "passed intermediate exam",
+        "predicted": "The user passed their Spanish intermediate level exam.",
+        "correct": true,
+        "add_ms": 4333.4,
+        "answer_ms": 1606.7
+      },
+      {
+        "id": "ms_003",
+        "question_type": "multi_session",
+        "question": "Who is the user's roommate?",
+        "ground_truth": "Jordan",
+        "predicted": "Jordan is the user's roommate.",
+        "correct": true,
+        "add_ms": 4305.6,
+        "answer_ms": 1839.8
+      },
+      {
+        "id": "ms_004",
+        "question_type": "multi_session",
+        "question": "What happened with the user's startup?",
+        "ground_truth": "raised seed funding",
+        "predicted": "The user's edtech startup recently launched its MVP, acquired fifty paying customers, and closed a five hundred thousand dollar seed round from angel investors.",
+        "correct": true,
+        "add_ms": 11007.0,
+        "answer_ms": 1382.8
+      },
+      {
+        "id": "ms_005",
+        "question_type": "multi_session",
+        "question": "What did the user think of their Japan trip?",
+        "ground_truth": "loved it",
+        "predicted": "The user loved their trip to Japan.",
+        "correct": true,
+        "add_ms": 9575.2,
+        "answer_ms": 1658.4
+      },
+      {
+        "id": "ab_001",
+        "question_type": "abstained_response",
+        "question": "What is the user's mother's name?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 1153.9,
+        "answer_ms": 1331.2
+      },
+      {
+        "id": "ab_002",
+        "question_type": "abstained_response",
+        "question": "How much does the user earn per year?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 6728.9,
+        "answer_ms": 1053.0
+      },
+      {
+        "id": "ab_003",
+        "question_type": "abstained_response",
+        "question": "What is the user's phone number?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 818.1,
+        "answer_ms": 31.5
+      },
+      {
+        "id": "ab_004",
+        "question_type": "abstained_response",
+        "question": "What religion does the user practice?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 5453.3,
+        "answer_ms": 1583.6
+      },
+      {
+        "id": "ab_005",
+        "question_type": "abstained_response",
+        "question": "What is the exact street address of the user's home?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 2130.0,
+        "answer_ms": 1454.5
+      }
+    ],
+    "VectorOnly (no supersession)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 6059.6,
+        "answer_ms": 1810.3
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user started working at Netflix this Monday.",
+        "correct": true,
+        "add_ms": 6995.1,
+        "answer_ms": 2567.0
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 5948.3,
+        "answer_ms": 9681.3
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling for fitness.",
+        "correct": true,
+        "add_ms": 8778.6,
+        "answer_ms": 4840.0
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 3923.7,
+        "answer_ms": 1195.6
+      },
+      {
+        "id": "ss_001",
+        "question_type": "single_session",
+        "question": "What is the user's dog's name?",
+        "ground_truth": "Max",
+        "predicted": "The user's dog's name is Max.",
+        "correct": true,
+        "add_ms": 1667.3,
+        "answer_ms": 701.7
+      },
+      {
+        "id": "ss_002",
+        "question_type": "single_session",
+        "question": "Where was the user born?",
+        "ground_truth": "Chicago",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 3953.6,
+        "answer_ms": 2689.7
+      },
+      {
+        "id": "ss_003",
+        "question_type": "single_session",
+        "question": "What is the user's favorite type of cuisine?",
+        "ground_truth": "Italian",
+        "predicted": "The user's absolute favorite type of cuisine is Italian food.",
+        "correct": true,
+        "add_ms": 1794.9,
+        "answer_ms": 1071.8
+      },
+      {
+        "id": "ss_004",
+        "question_type": "single_session",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Python",
+        "predicted": "The user mainly codes in Python.",
+        "correct": true,
+        "add_ms": 2508.4,
+        "answer_ms": 2712.0
+      },
+      {
+        "id": "ss_005",
+        "question_type": "single_session",
+        "question": "What is the user's favorite book?",
+        "ground_truth": "Dune",
+        "predicted": "The user's favorite book is Dune by Frank Herbert.",
+        "correct": true,
+        "add_ms": 1978.1,
+        "answer_ms": 1916.1
+      },
+      {
+        "id": "ms_001",
+        "question_type": "multi_session",
+        "question": "Where does the user's brother work?",
+        "ground_truth": "Amazon",
+        "predicted": "The user's brother Alex works at Amazon.",
+        "correct": true,
+        "add_ms": 6808.6,
+        "answer_ms": 1110.4
+      },
+      {
+        "id": "ms_002",
+        "question_type": "multi_session",
+        "question": "What happened with the user's Spanish language learning?",
+        "ground_truth": "passed intermediate exam",
+        "predicted": "The user started learning Spanish and passed their Spanish intermediate level exam.",
+        "correct": true,
+        "add_ms": 4810.1,
+        "answer_ms": 4885.3
+      },
+      {
+        "id": "ms_003",
+        "question_type": "multi_session",
+        "question": "Who is the user's roommate?",
+        "ground_truth": "Jordan",
+        "predicted": "Jordan is the user's roommate.",
+        "correct": true,
+        "add_ms": 12438.3,
+        "answer_ms": 2201.2
+      },
+      {
+        "id": "ms_004",
+        "question_type": "multi_session",
+        "question": "What happened with the user's startup?",
+        "ground_truth": "raised seed funding",
+        "predicted": "The user's edtech startup recently launched its MVP, acquired fifty paying customers, and closed a five hundred thousand dollar seed round from angel investors.",
+        "correct": true,
+        "add_ms": 9449.2,
+        "answer_ms": 1508.1
+      },
+      {
+        "id": "ms_005",
+        "question_type": "multi_session",
+        "question": "What did the user think of their Japan trip?",
+        "ground_truth": "loved it",
+        "predicted": "The user loved their trip to Japan.",
+        "correct": true,
+        "add_ms": 6815.1,
+        "answer_ms": 2502.5
+      },
+      {
+        "id": "ab_001",
+        "question_type": "abstained_response",
+        "question": "What is the user's mother's name?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 1670.6,
+        "answer_ms": 1383.5
+      },
+      {
+        "id": "ab_002",
+        "question_type": "abstained_response",
+        "question": "How much does the user earn per year?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 7183.4,
+        "answer_ms": 1026.3
+      },
+      {
+        "id": "ab_003",
+        "question_type": "abstained_response",
+        "question": "What is the user's phone number?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 611.8,
+        "answer_ms": 32.7
+      },
+      {
+        "id": "ab_004",
+        "question_type": "abstained_response",
+        "question": "What religion does the user practice?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 1353.0,
+        "answer_ms": 1893.7
+      },
+      {
+        "id": "ab_005",
+        "question_type": "abstained_response",
+        "question": "What is the exact street address of the user's home?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 1461.8,
+        "answer_ms": 1507.4
+      }
+    ],
+    "NaiveRAG (baseline)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 73.4,
+        "answer_ms": 1142.9
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Netflix.",
+        "correct": true,
+        "add_ms": 74.8,
+        "answer_ms": 1211.2
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married.",
+        "correct": true,
+        "add_ms": 70.2,
+        "answer_ms": 1111.2
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling for fitness.",
+        "correct": true,
+        "add_ms": 73.2,
+        "answer_ms": 1176.5
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 53.5,
+        "answer_ms": 1080.2
+      },
+      {
+        "id": "ss_001",
+        "question_type": "single_session",
+        "question": "What is the user's dog's name?",
+        "ground_truth": "Max",
+        "predicted": "The user's dog's name is Max.",
+        "correct": true,
+        "add_ms": 31.3,
+        "answer_ms": 755.9
+      },
+      {
+        "id": "ss_002",
+        "question_type": "single_session",
+        "question": "Where was the user born?",
+        "ground_truth": "Chicago",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 27.5,
+        "answer_ms": 1614.0
+      },
+      {
+        "id": "ss_003",
+        "question_type": "single_session",
+        "question": "What is the user's favorite type of cuisine?",
+        "ground_truth": "Italian",
+        "predicted": "The user's favorite type of cuisine is Italian food.",
+        "correct": true,
+        "add_ms": 33.0,
+        "answer_ms": 789.4
+      },
+      {
+        "id": "ss_004",
+        "question_type": "single_session",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Python",
+        "predicted": "The user primarily codes in Python.",
+        "correct": true,
+        "add_ms": 34.8,
+        "answer_ms": 779.7
+      },
+      {
+        "id": "ss_005",
+        "question_type": "single_session",
+        "question": "What is the user's favorite book?",
+        "ground_truth": "Dune",
+        "predicted": "The user's favorite book is Dune by Frank Herbert.",
+        "correct": true,
+        "add_ms": 32.1,
+        "answer_ms": 890.8
+      },
+      {
+        "id": "ms_001",
+        "question_type": "multi_session",
+        "question": "Where does the user's brother work?",
+        "ground_truth": "Amazon",
+        "predicted": "The user's brother Alex works at Amazon.",
+        "correct": true,
+        "add_ms": 68.6,
+        "answer_ms": 1740.8
+      },
+      {
+        "id": "ms_002",
+        "question_type": "multi_session",
+        "question": "What happened with the user's Spanish language learning?",
+        "ground_truth": "passed intermediate exam",
+        "predicted": "The user started learning Spanish, improved to hold basic conversations, and recently passed their intermediate level exam.",
+        "correct": true,
+        "add_ms": 70.7,
+        "answer_ms": 1396.5
+      },
+      {
+        "id": "ms_003",
+        "question_type": "multi_session",
+        "question": "Who is the user's roommate?",
+        "ground_truth": "Jordan",
+        "predicted": "Jordan is the user's roommate.",
+        "correct": true,
+        "add_ms": 71.3,
+        "answer_ms": 1314.8
+      },
+      {
+        "id": "ms_004",
+        "question_type": "multi_session",
+        "question": "What happened with the user's startup?",
+        "ground_truth": "raised seed funding",
+        "predicted": "The user's edtech startup recently launched its MVP, acquired fifty paying customers, and raised $500,000 in a seed round.",
+        "correct": true,
+        "add_ms": 78.1,
+        "answer_ms": 2529.1
+      },
+      {
+        "id": "ms_005",
+        "question_type": "multi_session",
+        "question": "What did the user think of their Japan trip?",
+        "ground_truth": "loved it",
+        "predicted": "The user thinks their Japan trip is absolutely amazing and the food is incredible.",
+        "correct": false,
+        "add_ms": 73.6,
+        "answer_ms": 3530.8
+      },
+      {
+        "id": "ab_001",
+        "question_type": "abstained_response",
+        "question": "What is the user's mother's name?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 32.8,
+        "answer_ms": 1276.4
+      },
+      {
+        "id": "ab_002",
+        "question_type": "abstained_response",
+        "question": "How much does the user earn per year?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 37.0,
+        "answer_ms": 1397.5
+      },
+      {
+        "id": "ab_003",
+        "question_type": "abstained_response",
+        "question": "What is the user's phone number?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 34.5,
+        "answer_ms": 1401.3
+      },
+      {
+        "id": "ab_004",
+        "question_type": "abstained_response",
+        "question": "What religion does the user practice?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 33.1,
+        "answer_ms": 2040.4
+      },
+      {
+        "id": "ab_005",
+        "question_type": "abstained_response",
+        "question": "What is the exact street address of the user's home?",
+        "ground_truth": "unknown",
+        "predicted": "I don't know.",
+        "correct": true,
+        "add_ms": 32.3,
+        "answer_ms": 954.4
+      }
+    ]
+  },
+  "summary": {
+    "Engram (full)": {
+      "overall": 0.95,
+      "by_type": {
+        "knowledge_update": 1.0,
+        "single_session": 0.8,
+        "multi_session": 1.0,
+        "abstained_response": 1.0
+      }
+    },
+    "VectorOnly (no supersession)": {
+      "overall": 0.95,
+      "by_type": {
+        "knowledge_update": 1.0,
+        "single_session": 0.8,
+        "multi_session": 1.0,
+        "abstained_response": 1.0
+      }
+    },
+    "NaiveRAG (baseline)": {
+      "overall": 0.9,
+      "by_type": {
+        "knowledge_update": 1.0,
+        "single_session": 0.8,
+        "multi_session": 0.8,
+        "abstained_response": 1.0
+      }
+    }
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "timestamp": "20260618_010523",
+  "results": {
+    "Engram (full)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user is living in Austin.",
+        "correct": true,
+        "add_ms": 9424.5,
+        "answer_ms": 993.5
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works on the streaming infrastructure team at Netflix.",
+        "correct": true,
+        "add_ms": 21767.2,
+        "answer_ms": 3013.1
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 11826.6,
+        "answer_ms": 1998.1
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What physical activity does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user's primary fitness activity is cycling.",
+        "correct": true,
+        "add_ms": 9146.2,
+        "answer_ms": 920.3
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's field of study is data science.",
+        "correct": true,
+        "add_ms": 9219.1,
+        "answer_ms": 1092.6
+      },
+      {
+        "id": "tc_001",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Denver",
+        "predicted": "The user lives in Denver, Colorado.",
+        "correct": true,
+        "add_ms": 8632.6,
+        "answer_ms": 2324.4
+      },
+      {
+        "id": "tc_002",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Stripe",
+        "predicted": "The user currently works at Stripe.",
+        "correct": true,
+        "add_ms": 16131.0,
+        "answer_ms": 1173.3
+      },
+      {
+        "id": "tc_003",
+        "question_type": "temporal_chain",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Rust",
+        "predicted": "The user codes mainly in Rust.",
+        "correct": true,
+        "add_ms": 8015.1,
+        "answer_ms": 1098.4
+      },
+      {
+        "id": "tc_004",
+        "question_type": "temporal_chain",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 7404.3,
+        "answer_ms": 7446.8
+      },
+      {
+        "id": "tc_005",
+        "question_type": "temporal_chain",
+        "question": "What exercise does the user currently do?",
+        "ground_truth": "swim",
+        "predicted": "The user's primary exercise is swimming.",
+        "correct": true,
+        "add_ms": 7566.3,
+        "answer_ms": 1750.0
+      }
+    ],
+    "VectorOnly (no supersession)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Tampa, Florida.",
+        "correct": false,
+        "add_ms": 7190.7,
+        "answer_ms": 2426.9
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Google and Netflix.",
+        "correct": true,
+        "add_ms": 15618.0,
+        "answer_ms": 2092.2
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 12857.1,
+        "answer_ms": 2096.4
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What physical activity does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user goes running every morning.",
+        "correct": false,
+        "add_ms": 8359.6,
+        "answer_ms": 16526.5
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's current field of study is computer science.",
+        "correct": false,
+        "add_ms": 9725.0,
+        "answer_ms": 8705.5
+      },
+      {
+        "id": "tc_001",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Denver",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 6583.6,
+        "answer_ms": 1605.6
+      },
+      {
+        "id": "tc_002",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Stripe",
+        "predicted": "The user currently works on the infrastructure team at Netflix.",
+        "correct": false,
+        "add_ms": 7838.7,
+        "answer_ms": 11004.2
+      },
+      {
+        "id": "tc_003",
+        "question_type": "temporal_chain",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Rust",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 8213.7,
+        "answer_ms": 2386.8
+      },
+      {
+        "id": "tc_004",
+        "question_type": "temporal_chain",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married.",
+        "correct": true,
+        "add_ms": 7246.8,
+        "answer_ms": 2028.8
+      },
+      {
+        "id": "tc_005",
+        "question_type": "temporal_chain",
+        "question": "What exercise does the user currently do?",
+        "ground_truth": "swim",
+        "predicted": "The user's current exercise is swimming.",
+        "correct": true,
+        "add_ms": 7190.3,
+        "answer_ms": 1304.6
+      }
+    ],
+    "NaiveRAG (baseline)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 141.5,
+        "answer_ms": 1415.3
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user currently works at Netflix.",
+        "correct": true,
+        "add_ms": 142.9,
+        "answer_ms": 1259.9
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 146.9,
+        "answer_ms": 1183.4
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What physical activity does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling and running for fitness.",
+        "correct": true,
+        "add_ms": 140.6,
+        "answer_ms": 5490.7
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's current field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's current field of study is data science.",
+        "correct": true,
+        "add_ms": 148.9,
+        "answer_ms": 1489.1
+      },
+      {
+        "id": "tc_001",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Denver",
+        "predicted": "The user's home is in Denver, Colorado.",
+        "correct": true,
+        "add_ms": 109.5,
+        "answer_ms": 2147.1
+      },
+      {
+        "id": "tc_002",
+        "question_type": "temporal_chain",
+        "question": "Where does the user currently work?",
+        "ground_truth": "Stripe",
+        "predicted": "The user is currently employed at Stripe.",
+        "correct": true,
+        "add_ms": 108.2,
+        "answer_ms": 1220.7
+      },
+      {
+        "id": "tc_003",
+        "question_type": "temporal_chain",
+        "question": "What programming language does the user primarily use?",
+        "ground_truth": "Rust",
+        "predicted": "The user primarily codes in Rust now.",
+        "correct": true,
+        "add_ms": 99.4,
+        "answer_ms": 1538.9
+      },
+      {
+        "id": "tc_004",
+        "question_type": "temporal_chain",
+        "question": "What is the user's current relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is single.",
+        "correct": false,
+        "add_ms": 113.0,
+        "answer_ms": 1319.8
+      },
+      {
+        "id": "tc_005",
+        "question_type": "temporal_chain",
+        "question": "What exercise does the user currently do?",
+        "ground_truth": "swim",
+        "predicted": "The user's main exercise is yoga.",
+        "correct": false,
+        "add_ms": 107.0,
+        "answer_ms": 22011.0
+      }
+    ]
+  },
+  "summary": {
+    "Engram (full)": {
+      "overall": 0.9,
+      "by_type": {
+        "knowledge_update": 1.0,
+        "temporal_chain": 0.8
+      }
+    },
+    "VectorOnly (no supersession)": {
+      "overall": 0.4,
+      "by_type": {
+        "knowledge_update": 0.4,
+        "temporal_chain": 0.4
+      }
+    },
+    "NaiveRAG (baseline)": {
+      "overall": 0.8,
+      "by_type": {
+        "knowledge_update": 1.0,
+        "temporal_chain": 0.6
+      }
+    }
+  }
+}

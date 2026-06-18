@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import uuid
 import logging
 from typing import Any, Optional
@@ -12,6 +13,13 @@ from .base import LLMProvider
 from .prompts import EXTRACTION_SYSTEM_PROMPT, format_messages
 
 logger = logging.getLogger(__name__)
+
+
+def _clean_json(text: str) -> str:
+    """Remove JS-style comments and trailing commas so standard json.loads works."""
+    text = re.sub(r"//[^\n]*", "", text)          # strip // comments
+    text = re.sub(r",(\s*[}\]])", r"\1", text)    # strip trailing commas
+    return text
 
 
 class OllamaProvider:
@@ -32,6 +40,61 @@ class OllamaProvider:
             options={"temperature": 0},
         )
         return response.message.content
+
+
+class GeminiProvider:
+    """Google Gemini-backed LLM provider via direct REST API."""
+
+    _BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/{}:generateContent"
+
+    def __init__(self, model: str = "gemini-2.5-flash", api_key: Optional[str] = None):
+        import os
+        key = api_key or os.environ.get("GEMINI_API_KEY")
+        if not key:
+            raise ValueError(
+                "Gemini API key required: pass api_key= or set GEMINI_API_KEY env var"
+            )
+        self._api_key = key
+        self.model = model
+
+    def complete(self, system: str, user: str) -> str:
+        import json
+        import time
+        import urllib.error
+        import urllib.request
+
+        combined = f"{system}\n\n{user}"
+        fallbacks = [self.model, "gemini-2.0-flash-lite", "gemini-1.5-flash"]
+        last_err: Exception = RuntimeError("No models tried")
+
+        for attempt, model in enumerate(fallbacks):
+            url = f"{self._BASE_URL.format(model)}?key={self._api_key}"
+            payload = json.dumps({
+                "contents": [{"parts": [{"text": combined}]}],
+            }).encode()
+            req = urllib.request.Request(
+                url, data=payload, headers={"Content-Type": "application/json"}
+            )
+            try:
+                with urllib.request.urlopen(req, timeout=60) as resp:
+                    data = json.loads(resp.read())
+                return data["candidates"][0]["content"]["parts"][0]["text"]
+            except urllib.error.HTTPError as e:
+                try:
+                    body = e.read().decode()
+                except Exception:
+                    body = ""
+                logger.warning("Gemini HTTP %s for model %s: %s", e.code, model, body[:300])
+                last_err = e
+                if e.code in (429, 503):
+                    time.sleep(2 ** attempt)
+                continue
+            except Exception as e:
+                logger.warning("Gemini call error for model %s: %s", model, e)
+                last_err = e
+                continue
+
+        raise RuntimeError(f"All Gemini models unavailable. Last: {last_err}")
 
 
 class LLMExtractor:
@@ -65,10 +128,10 @@ class LLMExtractor:
             text = raw.strip()
             if text.startswith("```"):
                 lines = text.splitlines()
-                # Remove first and last fence lines
                 lines = [l for l in lines if not l.startswith("```")]
                 text = "\n".join(lines).strip()
 
+            text = _clean_json(text)
             data = json.loads(text)
         except Exception as exc:
             logger.warning("JSON parse failed: %s\nRaw: %s", exc, raw)
@@ -116,7 +179,7 @@ class LLMExtractor:
 
         # Build Relation objects
         relations: list[Relation] = []
-        first_memory_id = memories[0].id if memories else str(uuid.uuid4())
+        fallback_memory_id = memories[0].id if memories else str(uuid.uuid4())
         for rr in raw_relations:
             src_name = rr.get("source_entity_name", "").lower()
             tgt_name = rr.get("target_entity_name", "").lower()
@@ -124,12 +187,22 @@ class LLMExtractor:
             tgt_entity = entity_name_to_obj.get(tgt_name)
             if src_entity is None or tgt_entity is None:
                 continue
+
+            # Link this relation to the memory whose content mentions the target
+            # entity. This ensures supersession marks the correct memory as stale
+            # rather than whichever memory happened to be first in the list.
+            memory_id = fallback_memory_id
+            for mem in memories:
+                if tgt_name and tgt_name in mem.content.lower():
+                    memory_id = mem.id
+                    break
+
             rel = Relation(
                 user_id=user_id,
                 source_entity_id=src_entity.id,
                 relation_type=rr.get("relation_type", "OTHER"),
                 target_entity_id=tgt_entity.id,
-                memory_id=first_memory_id,
+                memory_id=memory_id,
                 confidence=float(rr.get("confidence", 0.8)),
             )
             relations.append(rel)

@@ -1,0 +1,181 @@
+{
+  "timestamp": "20260617_232103",
+  "results": {
+    "Engram (full)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 6981.8,
+        "answer_ms": 2297.5
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Netflix.",
+        "correct": true,
+        "add_ms": 4841.8,
+        "answer_ms": 2456.6
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 6067.0,
+        "answer_ms": 9571.2
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling for fitness.",
+        "correct": true,
+        "add_ms": 6094.5,
+        "answer_ms": 1582.3
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 8123.2,
+        "answer_ms": 1206.7
+      }
+    ],
+    "VectorOnly (no supersession)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 5967.9,
+        "answer_ms": 2017.8
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Netflix.",
+        "correct": true,
+        "add_ms": 5637.5,
+        "answer_ms": 2636.9
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married to Sarah.",
+        "correct": true,
+        "add_ms": 6502.6,
+        "answer_ms": 14794.9
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "I don't know.",
+        "correct": false,
+        "add_ms": 7225.3,
+        "answer_ms": 8646.5
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 8655.9,
+        "answer_ms": 1278.0
+      }
+    ],
+    "NaiveRAG (baseline)": [
+      {
+        "id": "ku_001",
+        "question_type": "knowledge_update",
+        "question": "Where does the user currently live?",
+        "ground_truth": "Austin",
+        "predicted": "The user currently lives in Austin.",
+        "correct": true,
+        "add_ms": 71.3,
+        "answer_ms": 1154.3
+      },
+      {
+        "id": "ku_002",
+        "question_type": "knowledge_update",
+        "question": "Where does the user work?",
+        "ground_truth": "Netflix",
+        "predicted": "The user works at Netflix.",
+        "correct": true,
+        "add_ms": 74.6,
+        "answer_ms": 1360.7
+      },
+      {
+        "id": "ku_003",
+        "question_type": "knowledge_update",
+        "question": "What is the user's relationship status?",
+        "ground_truth": "married",
+        "predicted": "The user is married.",
+        "correct": true,
+        "add_ms": 75.2,
+        "answer_ms": 1153.0
+      },
+      {
+        "id": "ku_004",
+        "question_type": "knowledge_update",
+        "question": "What sport does the user currently do for fitness?",
+        "ground_truth": "cycling",
+        "predicted": "The user currently does cycling for fitness.",
+        "correct": true,
+        "add_ms": 70.3,
+        "answer_ms": 1412.8
+      },
+      {
+        "id": "ku_005",
+        "question_type": "knowledge_update",
+        "question": "What is the user's major or field of study?",
+        "ground_truth": "data science",
+        "predicted": "The user's major is data science.",
+        "correct": true,
+        "add_ms": 51.8,
+        "answer_ms": 1024.5
+      }
+    ]
+  },
+  "summary": {
+    "Engram (full)": {
+      "overall": 1.0,
+      "by_type": {
+        "knowledge_update": 1.0
+      }
+    },
+    "VectorOnly (no supersession)": {
+      "overall": 0.8,
+      "by_type": {
+        "knowledge_update": 0.8
+      }
+    },
+    "NaiveRAG (baseline)": {
+      "overall": 1.0,
+      "by_type": {
+        "knowledge_update": 1.0
+      }
+    }
+  }
+}

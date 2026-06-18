@@ -10,7 +10,10 @@ import networkx as nx
 
 from ...models import Entity, Relation
 
-FUNCTIONAL_TYPES = {"LIVES_IN", "WORKS_AT", "BORN_IN", "MARRIED_TO"}
+FUNCTIONAL_TYPES = {
+    "LIVES_IN", "WORKS_AT", "BORN_IN", "MARRIED_TO",
+    "STUDIES", "USES_LANGUAGE", "DOES_EXERCISE", "RELATIONSHIP_STATUS",
+}
 
 
 class NetworkXGraphStore:
